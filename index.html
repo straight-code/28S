@@ -201,7 +201,7 @@ footer ul li {
     <li>Services</li>
     <li>Products</li>
     <li><a href="/login">Login</a></li>
-    <li>Contact</li>
+    <li>   <h1>Page Views: <span id="page-views">Loading...</span></h1></li>
   </ul>
 </nav>
 <section class="banner">
@@ -293,6 +293,32 @@ footer ul li {
   </div>
 </footer>
 <!-- partial -->
-  
+      <script>
+        // Function to get and increment the page view count
+        function updatePageViews() {
+            // Get the current count from localStorage
+            let pageViews = localStorage.getItem('page_views');
+
+            // If page_views doesn't exist, initialize it
+            if (pageViews === null) {
+                pageViews = 0;
+            } else {
+                // Parse the value as it is stored as a string
+                pageViews = parseInt(pageViews, 10);
+            }
+
+            // Increment the page view count
+            pageViews += 1;
+
+            // Store the updated count back in localStorage
+            localStorage.setItem('page_views', pageViews);
+
+            // Display the updated count
+            document.getElementById('page-views').innerText = pageViews;
+        }
+
+        // Update the page view count when the page loads
+        window.onload = updatePageViews;
+    </script>
 </body>
 </html>
