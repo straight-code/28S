@@ -5,15 +5,18 @@
   <title>28s shortlinks</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.6.0/tailwind.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css'>
 <style>
   body {
-  background: #dfe9ff;
+  background: #1f1f1f;
   font-family: Lato, sans-serif;
 }
 
 nav {
   height: 50px;
-  background: #ffffff;
+  background: #111111;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
@@ -47,7 +50,7 @@ nav .logo {
   top: 0;
   left: 0;
   margin-right: 30px;
-  background-color: #4b71ff;
+  background-color: #111111;
   cursor: pointer;
 }
 nav .arrow-down {
@@ -80,7 +83,7 @@ nav .arrow-down {
   top: 0px;
   height: 300px;
   z-index: -1;
-  filter: drop-shadow(0 3rem 0.05rem #bfd8ff);
+  filter: drop-shadow(0 3rem 0.05rem #131313);
 }
 @media (min-width: 768px) {
   .banner .banner-image {
@@ -102,14 +105,14 @@ nav .arrow-down {
   float: left;
 }
 .banner .banner-text h1 {
-  color: #00106a;
+  color: #fff;
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: 3px;
   margin-bottom: 1rem;
 }
 .banner .banner-text p {
-  color: #00106a;
+  color: #aaa;
   font-size: 1.05rem;
   line-height: 1.75;
 }
@@ -117,7 +120,7 @@ nav .arrow-down {
   border: 0;
   border-radius: 50px;
   padding: 0.75rem 2.75rem;
-  background: #4b71ff;
+  background: #7200ff;
   color: #ffffff;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
   cursor: pointer;
@@ -138,7 +141,7 @@ nav .arrow-down {
 
 .card {
   padding: 16px 24px;
-  background: #ffffff;
+  background: #151515;
   height: 100%;
   position: relative;
   border: none;
@@ -150,7 +153,7 @@ nav .arrow-down {
 .card h3.card-title {
   font-weight: 700;
   font-size: 1.3rem;
-  color: #00106a;
+  color: #c5c5c5;
 }
 .card p {
   color: #989dc5;
@@ -176,7 +179,7 @@ nav .arrow-down {
 }
 
 footer {
-  background: #00106a;
+  background: #131313;
   margin: 32px 0 0px;
   padding: 32px 0;
 }
@@ -189,82 +192,149 @@ footer ul li {
   color: #ffffff;
   margin-bottom: 16px;
 }
+.eye-icon {
+  display: flex;
+  flex-direction: row;
+  transform: rotate(45deg);
+  border: solid 2px #fff;
+  height: 30px;
+  width: 30px;
+  border-radius: 69% 0 69% 0;
+}
+.eye-icon:after {
+  position: absolute;
+  top: calc(50% - 8px);
+  left: calc(50% - 8px);
+  height: 11px;
+  width: 11px;
+  content: "   ";
+  border-radius: 50%;
+  border: solid 2px #ffffff;
+}
 </style>
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <nav>
-  <div class="logo">
-    <div class="arrow-down"></div>
+  <div class="logo"><img src="../static/img/28s.png" style="width: 50px;height: auto;" />
   </div>
-  <ul>
-    <li>Services</li>
-    <li>Products</li>
-    <li><a href="/login">Login</a></li>
-    <li>   <h1>Page Views: <span id="page-views">Loading...</span></h1></li>
-  </ul>
+  <div style="color: #fff;margin-left: 90%;"><svg xmlns="http://www.w3.org/2000/svg" style="color: #fff;margin-top:10px" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/></svg></div>  <span style="color: #fff; margin-left: 15px;" id="page-views">Loading...</span>
+ 
 </nav>
 <section class="banner">
   <div class="container">
     <div class="banner-text">
-      <h1>Manage 28s shortlinks</h1>
+      <h1>28s shortlinks</h1>
       <p><strong>We make it easy to get the most out of your shortlinks.</strong> Our tools make it simple to track how your Droplets are performing and help you to respond quickly if there is a problem</p>
-      <button><a href="/register" style="text-decoration: none; color: #fff;">Sign Up</a></button>
+      <button><a href="/register" style="text-decoration: none; color: #fff;">Sign Up</a></button><span style="margin: 3%;"></span><button><a href="/login" style="text-decoration: none; color: #fff;">Log In</a></button>
     </div>
   </div>
-  <img class="banner-image" src="https://preview.ibb.co/bMi5Y6/banner_img.png" alt="monitoring" >
+  <img class="banner-image" src="../static/img/28s.png" alt="monitoring" >
 </section>
 
 <div class="container">
   <div class="row">
     <div class="mb-30 col-md-6 col-lg-4">
       <div class="card">
-      <img class="card-icon" src="https://image.ibb.co/cFV8mR/monitoring.png" alt="monitoring" >
-      <h3 class="card-title">Monitoring</h3>
-      <p class="card-text">Collect metrics on visibility, monitor Droplet performance and receive alerts when problems arise in your infrastructure–at no additional cost.</p>
+      <img class="card-icon" src="../static/img/28s.png" alt="monitoring" >
+      <h3 class="card-title">Analytics</h3>
+    <p class="card-text"><b>Track Performance</b><br>
+      Monitor detailed metrics on your shortlink performance, including click-through rates, geographic data, and device usage. Stay informed about your link activity to optimize your strategy–at no additional cost
+  </p>
       <a class="card-link" href="#">Learn more</a>
       </div>
     </div>
     <div class="mb-30 col-md-6 col-lg-4">
       <div class="card">
-      <img class="card-icon" src="https://image.ibb.co/jfmg6R/cloud_firewalls.png" alt="monitoring" >
-      <h3 class="card-title">Cloud Firewalls</h3>
-      <p class="card-text">Perfect for both staging and production deployments, cloud firewalls let you easily secure your infrastructure and define what services are visible on your Droplets–at no additional cost.</p>
+      <img class="card-icon" src="../static/img/28s.png" alt="monitoring" >
+      <h3 class="card-title">Revenue Insights
+        </h3>
+      <p class="card-text"><b>Monitor Earnings</b><br>
+        Get insights into your earnings from shortlinks with easy-to-read reports. Track which links are generating the most revenue and adjust your campaigns accordingly–with a 5% fee on earnings.</p>
       <a class="card-link" href="#">Learn more</a>
       </div>
     </div>
     <div class="mb-30 col-md-6 col-lg-4">
       <div class="card">
-      <img class="card-icon" src="https://image.ibb.co/fcnzt6/team_management.png" alt="team management" >
-      <h3 class="card-title">Team Management</h3>
-      <p class="card-text">With Digital Teams you can invite and manage users, ensure security with two-factor authentication, and control your resource spend with centralized billing–at no additional cost.</p>
+      <img class="card-icon" src="../static/img/28s.png" alt="snapshots" >
+      <h3 class="card-title">Custom Reports</h3>
+      <p class="card-text"><b>Generate Reports</b><br>
+        Create custom reports to analyze the performance of your shortlinks. Export data in various formats to share with your team and make data-driven decisions–$10 per report.</p>
       <a class="card-link" href="#">Learn more</a>
       </div>
     </div>
-    <div class="mb-30 col-md-6 col-lg-4">
-      <div class="card">
-      <img class="card-icon" src="https://image.ibb.co/evyiLm/backups.png" alt="monitoring" >
-      <h3 class="card-title">Backups</h3>
-      <p class="card-text">Backups run automatically on your Droplets each week and are stored for four weeks–add 20% of monthly Droplet cost.</p>
-      <a class="card-link" href="#">Learn more</a>
+  </div>
+</div>
+<div class="min-w-screen min-h-screen bg-dark-gray-700 flex px-5 py-5" style="margin-left: 340px;">
+  <div class="w-full max-w-3xl">
+      <div class="-mx-2 md:flex">
+          <div class="w-full md:w-1/2 px-2">
+              <div class="rounded-lg shadow-sm mb-4">
+                  <div style="width: 250px;height: auto;" class="rounded-lg bg-black shadow-lg md:shadow-xl relative overflow-hidden">
+                      <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                          <h4 class="text-sm uppercase text-gray-500 leading-tight">Total Links</h4>
+                          <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">{{ total_links }}</h3>
+                          <p class="text-xs text-green-500 leading-tight"></p>
+                      </div>
+                      <div class="absolute bottom-0 inset-x-0">
+                          <canvas id="chart1" height="70"></canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="w-full md:w-1/2 px-2">
+              <div class="rounded-lg shadow-sm mb-4">
+                  <div style="width: 250px;height: auto;" class="rounded-lg bg-black shadow-lg md:shadow-xl relative overflow-hidden">
+                      <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                          <h4 class="text-sm uppercase text-gray-500 leading-tight">Global Funds Generated</h4>
+                          <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">${{ global_funds_generated | round(2) }}</h3>
+                          <p class="text-xs text-red-500 leading-tight"></p>
+                      </div>
+                      <div class="absolute bottom-0 inset-x-0">
+                          <canvas id="chart2" height="70"></canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="w-full md:w-1/2 px-2">
+              <div class="rounded-lg shadow-sm mb-4">
+                  <div style="width: 250px;height: auto;" class="rounded-lg bg-black shadow-lg md:shadow-xl relative overflow-hidden">
+                      <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                          <h4 class="text-sm uppercase text-gray-500 leading-tight">Total Users</h4>
+                          <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">{{ total_users }}</h3>
+                          <p class="text-xs text-green-500 leading-tight"></p>
+                      </div>
+                      <div class="absolute bottom-0 inset-x-0">
+                          <canvas id="chart3" height="70"></canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        <div class="w-full md:w-1/2 px-2">
+          <div class="rounded-lg shadow-sm mb-4">
+              <div style="width: 250px;height: auto;" class="rounded-lg bg-black shadow-lg md:shadow-xl relative overflow-hidden">
+                  <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                      <h4 class="text-sm uppercase text-gray-500 leading-tight">Global Clicks</h4>
+                      <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">{{ global_clicks }}</h3>
+                      <p class="text-xs text-green-500 leading-tight"></p>
+                  </div>
+                  <div class="absolute bottom-0 inset-x-0">
+                      <canvas id="chart3" height="70"></canvas>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="mb-30 col-md-6 col-lg-4">
-      <div class="card">
-      <img class="card-icon" src="https://image.ibb.co/g9bERR/snapshots.png" alt="snapshots" >
-      <h3 class="card-title">Snapshots</h3>
-      <p class="card-text">Scale out your system effortlessly. Just take a snapshot of an existing server, then spin up a new Droplet from the snapshot–add $0.05 per gigabyte per month.</p>
-      <a class="card-link" href="#">Learn more</a>
       </div>
-    </div>
-    <div class="mb-30 col-md-6 col-lg-4">
-      <div class="card">
-      <img class="card-icon" src="https://image.ibb.co/cFV8mR/monitoring.png" alt="monitoring" >
-      <h3 class="card-title">Monitoring</h3>
-      <p class="card-text">Collect metrics on visibility, monitor Droplet performance and receive alerts when problems arise in your infrastructure–at no additional cost.</p>
-      <a class="card-link" href="#">Learn more</a>
-      </div>
-    </div>
+  </div>
+</div>
+
+
+<!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
+<div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+  <div>
+      <a title="Buy me a beer" href="https://www.buymeacoffee.com/" target="_blank" class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
+          <img class="object-cover object-center w-full h-full rounded-full" src="https://i.pinimg.com/originals/60/fd/e8/60fde811b6be57094e0abc69d9c2622a.jpg"/>
+      </a>
   </div>
 </div>
 <footer>
@@ -272,53 +342,43 @@ footer ul li {
   <div class="row">
     <div class="col-md-4">
       <ul>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-        <li><a href="{{ url_for('login') }}">Login</a></li>
-        <li><a href="{{ url_for('register') }}">Register</a></li>
-        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-        <li><a href="{{ url_for('shorten') }}">shortlinks</a></li>
+        <li><a href="{{ url_for('logout') }}" style="color: #fff; text-decoration: none;">Logout</a></li>
+        <li><a href="{{ url_for('login') }}" style="color: #fff; text-decoration: none;">Login</a></li>
+        <li><a href="{{ url_for('register') }}" style="color: #fff; text-decoration: none;">Register</a></li>
+        <li><a href="{{ url_for('dashboard') }}" style="color: #fff; text-decoration: none;">Dashboard</a></li>
+        <li><a href="{{ url_for('shorten') }}" style="color: #fff; text-decoration: none;">shortlinks</a></li>
       </ul>
     </div>
     <div class="col-md-4">
       <ul>
-     <li><a href="{{ url_for('logout') }}"></a></li>
+     <li><a href="" style="color: #fff; text-decoration: none;">Coming Soon</a></li>
+     <li><a href="" style="color: #fff; text-decoration: none;">GotBins Ecosystem</a></li>
+     <li><a href="" style="color: #fff; text-decoration: none;">Tradingbot-v0.0.2</a></li>
+
       </ul>
     </div>
     <div class="col-md-4">
       <ul>
-        <li><a href="{{ url_for('logout') }}"></a></li>
+        <li><a href="" style="color: #fff; text-decoration: none;"></a></li>
       </ul>
     </div>
   </div>
   </div>
 </footer>
 <!-- partial -->
-      <script>
-        // Function to get and increment the page view count
-        function updatePageViews() {
-            // Get the current count from localStorage
-            let pageViews = localStorage.getItem('page_views');
-
-            // If page_views doesn't exist, initialize it
-            if (pageViews === null) {
-                pageViews = 0;
-            } else {
-                // Parse the value as it is stored as a string
-                pageViews = parseInt(pageViews, 10);
-            }
-
-            // Increment the page view count
-            pageViews += 1;
-
-            // Store the updated count back in localStorage
-            localStorage.setItem('page_views', pageViews);
-
-            // Display the updated count
-            document.getElementById('page-views').innerText = pageViews;
-        }
-
-        // Update the page view count when the page loads
-        window.onload = updatePageViews;
-    </script>
+<script>
+  function updatePageViews() {
+      let pageViews = localStorage.getItem('page_views');
+      if (pageViews === null) {
+          pageViews = 0;
+      } else {
+          pageViews = parseInt(pageViews, 10);
+      }
+      pageViews += 1;
+      localStorage.setItem('page_views', pageViews);
+      document.getElementById('page-views').innerText = pageViews;
+  }
+  window.onload = updatePageViews;
+</script>
 </body>
 </html>
