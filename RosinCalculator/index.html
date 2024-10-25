@@ -3,156 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yield and Loss Calculator</title>
-    <style>
-        .mycontainer {
-            border: 5px soild #fff;
-            border-radius: 8px;
-            background-color: #212121;
-            color: #fff;
-            margin: 250px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: auto auto;
-            padding: 10px;
-        }
-        .grid-item {
-            padding: 20px;
-            text-align: center;
-            border: #323232 solid;
-            border-radius: 6px;
-            margin: 10px;
-        }
-     </style>
+    <title>Yield and Loss Calculators</title>
+   
     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script>
         // JavaScript function to calculate yield and loss
         function calculateYieldAndLoss() {
-            // Get the input values
             let startWeight = parseFloat(document.getElementById("startWeight").value);
             let returnWeight = parseFloat(document.getElementById("returnWeight").value);
             
-            // Validate the input
             if (isNaN(startWeight) || isNaN(returnWeight) || startWeight <= 0 || returnWeight < 0) {
                 alert("Please enter valid positive numbers.");
                 return;
             }
 
-            // Calculate the yield and loss
             let percentageYield = (returnWeight / startWeight) * 100;
             let totalLoss = startWeight - returnWeight;
 
-            // Display the results
             document.getElementById("percentageYield").textContent = percentageYield.toFixed(2) + "%";
-            document.getElementById("totalLoss").textContent = totalLoss.toFixed(2) + " units";
+            document.getElementById("totalLoss").textContent = totalLoss.toFixed(2) + " grams";
         }
 
-        // Function to calculate the loss and amount generated based on yield percentage and grams
+        // Calculate loss and amount generated based on yield percentage and grams
         function calculateFromYieldPercentage() {
-            // Get the input values
             let expectedYield = parseFloat(document.getElementById("expectedYield").value);
             let initialGrams = parseFloat(document.getElementById("initialGrams").value);
             
-            // Validate the input
             if (isNaN(expectedYield) || isNaN(initialGrams) || expectedYield <= 0 || expectedYield > 100 || initialGrams <= 0) {
                 alert("Please enter valid numbers. Yield should be between 0 and 100.");
                 return;
             }
 
-            // Calculate the generated amount and loss
             let generatedAmount = (expectedYield / 100) * initialGrams;
             let totalLoss = initialGrams - generatedAmount;
 
-            // Display the results
             document.getElementById("generatedAmount").textContent = generatedAmount.toFixed(2) + " grams";
             document.getElementById("lossAmount").textContent = totalLoss.toFixed(2) + " grams";
         }
+
+        // Function to calculate the average price per gram
+        function calculateAverageGramPrice() {
+            let startWeight = parseFloat(document.getElementById("startWeightAvg").value);
+            let expectedYield = parseFloat(document.getElementById("yieldPercentage").value);
+            let price = parseFloat(document.getElementById("price").value);
+            
+            if (isNaN(startWeight) || isNaN(expectedYield) || isNaN(price) || startWeight <= 0 || expectedYield <= 0 || price <= 0) {
+                alert("Please enter valid positive numbers.");
+                return;
+            }
+
+            // Calculate generated amount based on the yield percentage
+            let generatedAmount = (expectedYield / 100) * startWeight;
+
+            // Calculate the average gram price
+            let averageGramPrice = price / generatedAmount;
+
+            // Display the result
+            document.getElementById("avgGramPrice").textContent = averageGramPrice.toFixed(2) + " per gram";
+        }
+
+        // Calculate total amount and quality based on price per gram, total grams, and yield percentage
+        function calculateTotalAmountAndQuality() {
+            let pricePerGram = parseFloat(document.getElementById("pricePerGram").value);
+            let totalGrams = parseFloat(document.getElementById("totalGrams").value);
+            let yieldPercentage = parseFloat(document.getElementById("yieldPercent").value);
+
+            if (isNaN(pricePerGram) || isNaN(totalGrams) || isNaN(yieldPercentage) || pricePerGram <= 0 || totalGrams <= 0 || yieldPercentage < 0 || yieldPercentage > 100) {
+                alert("Please enter valid numbers. Yield should be between 0 and 100.");
+                return;
+            }
+
+            // Calculate total amount
+            let totalAmount = pricePerGram * totalGrams;
+
+            // Determine quality based on yield percentage
+            let quality;
+            if (yieldPercentage >= 45) {
+                quality = "High Quality";
+            } else if (yieldPercentage >= 25) {
+                quality = "Medium Quality";
+            } else {
+                quality = "Low Quality";
+            }
+
+            // Display the results
+            document.getElementById("totalAmount").textContent = totalAmount.toFixed(2) + " currency";
+            document.getElementById("quality").textContent = quality;
+        }
     </script>
+    </script>
+     <style>
+        .grid {
+           display: grid;
+           grid-template-columns: auto auto;
+           padding: 10px;
+       }
+       .grid-item {
+           padding: 20px;
+           text-align: center;
+           border-radius: 6px;
+           margin: 10px;
+       }
+       .grid-sm {
+           display: grid;
+           grid-template-columns: auto auto;
+           padding: 10px;
+       }
+       .grid-sm-item {
+           padding: 10px;
+           text-align: center;
+           border: #2f2f2f solid 5px;
+           border-radius:6px ;
+           
+       }
+   </style>
 </head>
-<body style="background-color: #292929;">
-    <div class="mycontainer">
-        <h1 class="text-center mb-4">Rosin Calculators</h1>
-
+<body style="color: white;background-color: #2f2f2f;">
     <div class="container mt-5">
+        <h1 class="text-center mb-4">Rosin Calculators</h1>
         <div class="grid">
+
             <div class="grid-item">
-                <br>
-                <br>
-                <br>
+                <!-- First Calculator: Calculate Yield and Loss from starting and return weight -->
+                <div class="card" style="color: white;background-color: #1f1f1f;width: 500px;">
+                    <div class="card-body">
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-md-6">
+                                <h3>Calculate Yield and Loss from Weights</h3>
+                                <br><br><hr style="background-color: white;">
+                                <div class="mb-3">
+                                    <label for="startWeight" class="form-label">Starting Weight</label>
+                                    <input type="number" class="form-control" id="startWeight" placeholder="Enter starting weight">
+                                </div>
 
-        <!-- First Calculator: Calculate Yield and Loss from starting and return weight -->
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h3>Calculate Yield and Loss</h3>
-                <div class="mb-3">
-                    <label for="startWeight" class="form-label">Starting Weight</label>
-                    <input type="number" class="form-control" id="startWeight" placeholder="Enter starting weight in grams">
-                </div>
+                                <div class="mb-3">
+                                    <label for="returnWeight" class="form-label">Return Weight</label>
+                                    <input type="number" class="form-control" id="returnWeight" placeholder="Enter return weight">
+                                </div>
 
-                <div class="mb-3">
-                    <label for="returnWeight" class="form-label">Yield Weight</label>
-                    <input type="number" class="form-control" id="returnWeight" placeholder="Enter return weight in grams">
-                </div>
-
-                <!-- Button to trigger calculation -->
-                <button class="btn btn-primary w-100" onclick="calculateYieldAndLoss()">Calculate</button>
-
-                <!-- Output section -->
-                <div class="mt-4">
-                    <h5>Results</h5>
-                    <div class="grid">
-                    <div class="grid-item">
-                    <p><strong style="text-align: center;">Yield Percentage:</strong> <span style="color: #00ed00;font-size: 25px;font-weight: 900; text-align: center;" id="percentageYield">0%</span></p>
+                                <button class="btn btn-primary w-100" onclick="calculateYieldAndLoss()">Calculate</button>
+                                <br><br>
+                                <hr style="background-color: white;">
+                                <div class="mt-4">
+                                    <h5>Results</h5>
+                                    <div class="grid-sm">
+                                        <div class="grid-sm-item">
+                                            <p><strong>Yield Percentage:</strong> <span style="color: #00ed00;font-size: 25px;font-weight: 900; text-align: center;" id="percentageYield">0%</span></p>
+                                        </div>
+                                        <div class="grid-sm-item">
+                                            <p><strong>Total Loss:</strong> <span style="color: #ed0000;font-size: 25px;font-weight: 900; text-align: center;" id="totalLoss">0 <span style="color: #ff0000;font-size: 18px;font-weight: 900; text-align: center;">grams</span></span></p>
+                                        </div>
+                                    </div>
+                                <hr style="background-color: white;">
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="grid-item">
-                    <p><strong style="text-align: center;">Loss Amount:</strong> <span style="color: #ed0000;font-size: 25px;font-weight: 900; border: none;" id="totalLoss">0 grams</span></p>
-                        </div>
-                        </div>
                 </div>
             </div>
         </div>
 
-
-        </div>
         <div class="grid-item">
-        <!-- Second Calculator: Calculate Loss and Generated Amount from Expected Yield -->
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-                <h3>Calculate Loss and yield Amount from Expected Yield %</h3>
-                <div class="mb-3">
-                    <label for="expectedYield" class="form-label">Expected Yield (%)</label>
-                    <input type="number" class="form-control" id="expectedYield" placeholder="Enter expected yield percentage">
-                </div>
+            <!-- Second Calculator: Calculate Loss and Generated Amount from Expected Yield -->
+            <div class="card" style="background-color: #1f1f1f;color: white; width: 500px;">
+                <div class="card-body">
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-6">
+                            <h3>Calculate Loss and Generated Amount from Yield %</h3>
+                            <br><br><hr style="background-color: white;">
+                            <div class="mb-3">
+                                <label for="expectedYield" class="form-label">Expected Yield (%)</label>
+                                <input type="number" class="form-control" id="expectedYield" placeholder="Enter expected yield percentage">
+                            </div>
 
-                <div class="mb-3">
-                    <label for="initialGrams" class="form-label"> Starting Weight (grams)</label>
-                    <input type="number" class="form-control" id="initialGrams" placeholder="Enter initial amount in grams">
-                </div>
+                            <div class="mb-3">
+                                <label for="initialGrams" class="form-label">Initial Amount (grams)</label>
+                                <input type="number" class="form-control" id="initialGrams" placeholder="Enter initial amount in grams">
+                            </div>
 
-                <!-- Button to trigger calculation -->
-                <button class="btn btn-success w-100" onclick="calculateFromYieldPercentage()">Calculate</button>
-
-                <!-- Output section -->
-                <div class="mt-4">
-                    <h5>Results</h5>
-                    <div class="grid">
-                    <div class="grid-item">
-                    <p><strong>Generated Amount:</strong> <span style="color: #00ed00;font-size: 25px;font-weight: 900; border: none;" id="generatedAmount">0 grams</span></p>
-                    </div>
-                    <div class="grid-item">
-                    <p><strong>Loss Amount:</strong> <span style="color: #ed0000;font-size: 25px;font-weight: 900; border: none;" id="lossAmount">0 grams</span></p>
-                    </div>
+                            <button class="btn btn-success w-100" onclick="calculateFromYieldPercentage()">Calculate</button>
+                            <br><br><hr style="background-color: white;">
+                            <div class="mt-4">
+                                <h5>Results</h5>
+                                <div class="grid-sm">
+                                    <div class="grid-sm-item">
+                                        <p><strong>Generated Amount:</strong> <span style="color: #00ed00;font-size: 25px;font-weight: 900; text-align: center;"  id="generatedAmount">0 <span style="color: #00ed00;font-size: 18px;font-weight: 900; text-align: center;" >grams</span></span></p>
+                                    </div>
+                                    <div class="grid-sm-item">
+                                        <p><strong>Loss Amount:</strong> <span style="color: #ed0000;font-size: 25px;font-weight: 900; text-align: center;"  id="lossAmount">0 <span style="color: #ed0000;font-size: 18px;font-weight: 900; text-align: center;" >grams</span></span></p>
+                                    </div>
+                                </div>
+                                <hr style="background-color: white;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="grid-item">
+            <!-- Second Calculator: Calculate Loss and Generated Amount from Expected Yield -->
+            <div class="card" style="background-color: #1f1f1f;color: white; width: 500px;">
+                <div class="card-body">
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-6">
+                            <h3>Calculate Total Amount and Product Quality</h3>
+                            <div class="mb-3">
+                                <label for="pricePerGram" class="form-label">Price per Gram</label>
+                                <input type="number" class="form-control" id="pricePerGram" placeholder="Enter price per gram">
+                            </div>
+            
+                            <div class="mb-3">
+                                <label for="totalGrams" class="form-label">Total Grams</label>
+                                <input type="number" class="form-control" id="totalGrams" placeholder="Enter total grams">
+                            </div>
+            
+                            <div class="mb-3">
+                                <label for="yieldPercent" class="form-label">Yield Percentage</label>
+                                <input type="number" class="form-control" id="yieldPercent" placeholder="Enter yield percentage">
+                            </div>
+            
+                            <button class="btn btn-warning w-100" onclick="calculateTotalAmountAndQuality()">Calculate</button>
+            
+                            <div class="mt-4">
+                                <h5>Results</h5>
+                                <p><strong>Total Amount:</strong> <span id="totalAmount">0 currency</span></p>
+                                <p><strong>Quality of Product:</strong> <span id="quality">Unknown</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+
+
+        <div class="grid-item">
+            <div class="card" style="background-color: #1f1f1f;color: white;">
+                <div class="card-body">
+            <!-- Third Calculator: Calculate Average Gram Price -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <h3>Calculate Average Price per Gram</h3>
+                    <br><br><hr style="background-color: white;">
+                    <div class="mb-3">
+                        <label for="startWeightAvg" class="form-label">Starting Weight</label>
+                        <input type="number" class="form-control" id="startWeightAvg" placeholder="Enter starting weight">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="yieldPercentage" class="form-label">Expected Yield (%)</label>
+                        <input type="number" class="form-control" id="yieldPercentage" placeholder="Enter expected yield percentage">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price of Starting Weight</label>
+                        <input type="number" class="form-control" id="price" placeholder="Enter price of starting weight">
+                    </div>
+
+                    <button class="btn btn-info w-100" onclick="calculateAverageGramPrice()">Calculate</button>
+                    <br><br><hr style="background-color: white;">
+                    <div class="mt-4">
+                        <h5>Results</h5>
+                        <p><strong>Average Price per Gram:</strong> <span style="color: #00ed00;font-size: 25px;font-weight: 900; text-align: center;"  id="generatedAmount"><span id="avgGramPrice">0<span style="color: white;font-size: 18px;" >per gram</span></span></p>
+                    </div>
+                    <br><br><hr style="background-color: white;">
+                        <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">How it Works</button>
+                </div>
+  
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">How it works</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h4>1. Inputs:</h4>
+                                    <ul>
+                                        <li>Starting Weight: Total starting weight in grams.</li>
+                                        <li>Expected Yield: Percentage of the expected yield.</li>
+                                        <li>Price of Starting Weight: Total price of the starting weight in currency (e.g., USD, EUR).</li>
+                                    </ul>
+
+                                <h4>2. Calculations:</h4>
+                                    <p>The generated amount is calculated based on the yield percentage:</p>
+                                    <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Generated&nbsp;Amount</mtext><mo>=</mo><mfrac><mtext>Expected&nbsp;Yield</mtext><mn>100</mn></mfrac><mo>×</mo><mtext>Starting&nbsp;Weight</mtext></mrow><annotation encoding="application/x-tex">\text{Generated Amount} = \frac{\text{Expected Yield}}{100} \times \text{Starting Weight}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.6944em;"></span><br><br>
+                                    <p>The average price per gram is calculated by dividing the total price by the generated amount:</p>   
+                                    <span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Average&nbsp;Gram&nbsp;Price</mtext><mo>=</mo><mfrac><mtext>Total&nbsp;Price</mtext><mtext>Generated&nbsp;Amount&nbsp;(grams)</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{Average Gram Price} = \frac{\text{Total Price}}{\text{Generated Amount (grams)}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.8778em; vertical-align: -0.1944em;"></span><br><br>
+                                    <p>JavaScript: The function calculateAverageGramPrice() performs these calculations and updates the result (avgGramPrice) in the HTML.</p>
+            
+                                <h4>3. How It Works:</h4>
+                                    <ul>
+                                        <li>Enter the starting weight, expected yield, and total price.</li>
+                                        <li>Click "Calculate" and the average price per gram is shown.</li>
+                                        <li>This new calculator allows you to determine the cost per gram based on the yield and price of the starting weight. Let me know if you'd like further adjustments!</li>
+                                    </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+      
+   
 
     <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+             $('#myInput').trigger('focus')
+        })
+
+    </script>
 </body>
 </html>
